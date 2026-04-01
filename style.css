@@ -119,6 +119,7 @@ iframe {
   padding: 25px;
   margin: 20px auto;
   width: 90%;
+  box-sizing: border-box;
   max-width: 500px;
   box-shadow: 0 10px 20px rgba(244, 143, 177, 0.2); /* WOOZIカラー風の薄いピンクの影 */
   border: 1px solid #f0f0f0;
