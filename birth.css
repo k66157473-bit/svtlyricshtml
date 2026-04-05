@@ -12,6 +12,46 @@ body, html {
   text-align: center;
 }
 
+.timer-wrapper {
+    position: fixed;
+    top: 90px; /* ストップボタンの下に配置 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    text-align: center;
+    z-index: 100;
+}
+
+.timer-label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.progress-container {
+    width: 100%;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #000;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 100%;
+    background: #92A8D1; /* セレニティ色 */
+    transition: width 1s linear;
+}
+
+.time-text {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 5px;
+    text-shadow: 1px 1px 2px white;
+}
+
 /* マーキーの外枠 */
 .marquee-container {
     width: 100%;

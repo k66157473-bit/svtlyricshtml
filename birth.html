@@ -19,5 +19,45 @@
             <span>Happy birthday to Mingyu from Seventeen! We hope you continue to be successful in the future. 세븐틴 민규 씨 생일 축하합니다! 앞으로도 활약을 계속하십시오. &nbsp;&nbsp;&nbsp;</span>
         </div>
     </div>
+    <div class="timer-wrapper">
+    <div class="timer-label">Countdown to Mingyu's Birthday!</div>
+    <div class="progress-container">
+        <div id="progress-bar" class="progress-bar"></div>
+    </div>
+    <div id="time-left" class="time-text">Calculating...</div>
+    <script>
+function updateTimer() {
+    const targetDate = new Date('2026-04-06T00:00:00').getTime();
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    // 24時間（86400秒）を基準にバーの長さを計算
+    const totalDay = 24 * 60 * 60 * 1000;
+    let progress = (diff / totalDay) * 100;
+    if (progress < 0) progress = 0;
+    if (progress > 100) progress = 100;
+
+    // バーの幅を更新
+    document.getElementById('progress-bar').style.width = progress + '%';
+
+    if (diff <= 0) {
+        document.getElementById('time-left').innerHTML = "HAPPY BIRTHDAY MINGYU! 🎂";
+        document.getElementById('progress-bar').style.width = '0%';
+        return;
+    }
+
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById('time-left').innerHTML = 
+        `${hours}h ${minutes}m ${seconds}s left`;
+}
+
+// 1秒ごとに更新
+setInterval(updateTimer, 1000);
+updateTimer();
+</script>
+</div>
 </body>
 </html>
