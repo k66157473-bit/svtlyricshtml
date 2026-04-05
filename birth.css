@@ -1,0 +1,91 @@
+/* 全体のリセット */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(45deg, #F7CAC9 0%, #92A8D1 100%);
+    overflow: hidden;
+      font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  text-align: center;
+}
+
+/* マーキーの外枠 */
+.marquee-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 20px 0;
+}
+
+/* スクロールする中身 */
+.marquee-content {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 25s linear infinite; /* 25秒で一周（読みやすい速度） */
+}
+
+.marquee-content span {
+    font-size: 3rem;
+    font-weight: bold;
+    /* 水色の文字色 */
+    color: #87CEEB; 
+    /* 黒色の縁取り（text-shadowで表現） */
+    text-shadow: 
+        2px 2px 0 #000,
+       -2px 2px 0 #000,
+        2px -2px 0 #000,
+       -2px -2px 0 #000,
+        0px 2px 0 #000,
+        0px -2px 0 #000,
+        2px 0px 0 #000,
+       -2px 0px 0 #000;
+}
+
+/* アニメーションの設定 */
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+/* チェックボックス本体は隠す */
+#stop-toggle {
+    display: none;
+}
+/* ボタンを画面上部の中央に固定 */
+.control-btn {
+    position: fixed; /* 画面に固定 */
+    top: 20px;       /* 上から20pxの位置 */
+    left: 50%;       /* 左から50%の位置へ */
+    transform: translateX(-50%); /* 自分の幅の半分だけ左に戻して中央揃え */
+    
+    display: block;
+    width: 140px;
+    padding: 12px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8); /* 少し透明度を下げて見やすく */
+    border: 2px solid #000;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 100; /* 他の要素より手前に表示 */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* 軽く影をつけて浮かせる */
+    transition: all 0.3s ease; /* 変化を滑らかに */
+}
+
+/* ホバー（マウスを乗せた時）の演出 */
+.control-btn:hover {
+    background: #fff;
+    transform: translateX(-50%) scale(1.05); /* 少し大きくする */
+}
+
+/* 表示の切り替え */
+.play-text { display: none; }
+#stop-toggle:checked + .control-btn .stop-text { display: none; }
+#stop-toggle:checked + .control-btn .play-text { display: inline; }
+
+/* ✅ ここが重要：チェックが入ったらアニメーションを止める */
+#stop-toggle:checked ~ .marquee-container .marquee-content {
+    animation-play-state: paused;
+}
